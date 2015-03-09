@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<layers>
+  <layer
+      name="covertile.galleria"
+      interface="covertile.galleria.interfaces.IBrowserLayer"
+      />
+</layers>
