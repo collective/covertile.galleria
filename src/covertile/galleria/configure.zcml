@@ -8,5 +8,9 @@
   <include package="collective.js.galleria"/>
   <!--i18n:registerTranslations directory="locales" /-->
   <include file="profiles.zcml" />
+  <include file="tiles.zcml" />
+
+  <!-- Data converters -->
+  <adapter factory=".tiles.UUIDSFieldDataConverter" />
 
 </configure>

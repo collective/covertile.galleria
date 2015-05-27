@@ -8,6 +8,7 @@ import unittest
 
 
 class InstallTestCase(unittest.TestCase):
+
     """Ensure product is properly installed."""
 
     layer = INTEGRATION_TESTING
@@ -27,6 +28,7 @@ class InstallTestCase(unittest.TestCase):
 
 
 class UninstallTestCase(unittest.TestCase):
+
     """Ensure product is properly removed."""
 
     layer = INTEGRATION_TESTING
@@ -41,3 +43,11 @@ class UninstallTestCase(unittest.TestCase):
 
     def test_browser_layer_removed(self):
         self.assertNotIn(IBrowserLayer, registered_layers())
+
+    @unittest.expectedFailure  # FIXME: remove tiles on uninstall
+    def test_tile_removed(self):
+        from plone.registry.interfaces import IRegistry
+        from zope.component import getUtility
+        registry = getUtility(IRegistry)
+        tiles = registry['plone.app.tiles']
+        self.assertNotIn(u'collective.cover.carousel', tiles)
